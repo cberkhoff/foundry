@@ -18,7 +18,8 @@
             };
             fetch("https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/", requestOptions)
             .then(response => response.text())
-            .then(result => document.getElementById("status").innerHTML=result.text())
+            .then(response => response.text())
+            .then(result => document.getElementById("response").innerHTML=result)
             .catch(error => console.log('error', error));
         }
         var start = (pass)=>{
@@ -32,7 +33,8 @@
                 redirect: 'follow'
             };
             fetch("https://dlnkczk7posu4i2h733hrfvyv40ymodx.lambda-url.us-west-2.on.aws/", requestOptions)
-            .then(result => console.log(result))
+            .then(response => response.text())
+            .then(result => document.getElementById("response").innerHTML=result)
             .catch(error => console.log('error', error));
         }
         var stop = (pass)=>{
@@ -46,18 +48,22 @@
                 redirect: 'follow'
             };
             fetch("https://2bd464rxbb5d7ovdypybtqmxsy0kstoh.lambda-url.us-west-2.on.aws/", requestOptions)
-            .then(result => console.log(result))
+            .then(response => response.text())
+            .then(result => document.getElementById("response").innerHTML=result)
             .catch(error => console.log('error', error));
         }
     </script>
 </head>
 <body>
+    <p>
+        <div>Response:</div>
+        <div id="response"></div>
+    </p>
     <form>
         <input type="password" id="pass">
-        <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Start Server</button>
-        <div id="status"></div>
-        <button type="button" onclick="start(document.getElementById('pass').value)">Start Server</button>
-        <button type="button" onclick="stop(document.getElementById('pass').value)">Stop Server</button>
+        <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
+        <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
+        <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>
         <!-- <button type="button">Call API</button> -->
     </form>
 </body>
