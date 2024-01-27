@@ -6,22 +6,16 @@
     <style>
     </style>
     <script>
-        // define the callAPI function that takes a first name and last name as parameters
-        var callAPI = (firstName,lastName)=>{
-            // instantiate a headers object
+        var callAPI = ()=>{
             var myHeaders = new Headers();
-            // add content type header to object
             myHeaders.append("Content-Type", "application/json");
-            // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
-            // create a JSON object with parameters for API call and store in a variable
+            //var raw = JSON.stringify({"pass": pass});
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
-                body: raw,
+                //body: raw,
                 redirect: 'follow'
             };
-            // make API call with parameters and use promises to get response
             fetch("https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/", requestOptions)
             .then(response => response.text())
             .then(result => console.log(JSON.parse(result)))
@@ -31,12 +25,7 @@
 </head>
 <body>
     <form>
-        <label>First Name :</label>
-        <input type="text" id="fName">
-        <label>Last Name :</label>
-        <input type="text" id="lName">
-        <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>-->
+        <button type="button" onclick="callAPI()">Server Status</button>
         <!-- <button type="button">Call API</button> -->
     </form>
 </body>
