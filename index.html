@@ -6,39 +6,58 @@
     <style>
     </style>
     <script>
-        var checkStatus = ()=>{
+        var checkStatus = (pass)=>{
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"pass": pass});
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
+                body: raw,
                 redirect: 'follow'
             };
             fetch("https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(JSON.parse(result)))
+            .then(result => document.getElementById("status").innerHTML=result.text())
             .catch(error => console.log('error', error));
         }
-        var start = ()=>{
+        var start = (pass)=>{
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            //var raw = JSON.stringify({"pass": pass});
+            var raw = JSON.stringify({"pass": pass});
             var requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
-                //body: raw,
+                body: raw,
                 redirect: 'follow'
             };
-            fetch("https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/", requestOptions)
-            .then(result => document.getElementById("status").innerHTML=response.text())
+            fetch("https://dlnkczk7posu4i2h733hrfvyv40ymodx.lambda-url.us-west-2.on.aws/", requestOptions)
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+        }
+        var stop = (pass)=>{
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            var raw = JSON.stringify({"pass": pass});
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch("https://2bd464rxbb5d7ovdypybtqmxsy0kstoh.lambda-url.us-west-2.on.aws/", requestOptions)
+            .then(result => console.log(result))
             .catch(error => console.log('error', error));
         }
     </script>
 </head>
 <body>
-    <div id="status"></div>
     <form>
-        <button type="button" onclick="start()">Start Server</button>
+        <input type="password" id="pass">
+        <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Start Server</button>
+        <div id="status"></div>
+        <button type="button" onclick="start(document.getElementById('pass').value)">Start Server</button>
+        <button type="button" onclick="stop(document.getElementById('pass').value)">Stop Server</button>
         <!-- <button type="button">Call API</button> -->
     </form>
 </body>
