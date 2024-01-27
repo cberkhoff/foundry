@@ -6,7 +6,7 @@
     <style>
     </style>
     <script>
-        var checkStatus = (pass)=>{
+        var server = (pass, url) => {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             var raw = JSON.stringify({"pass": pass});
@@ -16,40 +16,20 @@
                 body: raw,
                 redirect: 'follow'
             };
-            fetch("https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/", requestOptions)
+            fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => document.getElementById("response").innerHTML=result)
             .catch(error => console.log('error', error));
+        }
+
+        var checkStatus = (pass)=>{
+            server(pass, "https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/")
         }
         var start = (pass)=>{
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            var raw = JSON.stringify({"pass": pass});
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            fetch("https://dlnkczk7posu4i2h733hrfvyv40ymodx.lambda-url.us-west-2.on.aws/", requestOptions)
-            .then(response => response.text())
-            .then(result => document.getElementById("response").innerHTML=result)
-            .catch(error => console.log('error', error));
+            server(pass, "https://dlnkczk7posu4i2h733hrfvyv40ymodx.lambda-url.us-west-2.on.aws/")
         }
         var stop = (pass)=>{
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            var raw = JSON.stringify({"pass": pass});
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-            fetch("https://2bd464rxbb5d7ovdypybtqmxsy0kstoh.lambda-url.us-west-2.on.aws/", requestOptions)
-            .then(response => response.text())
-            .then(result => document.getElementById("response").innerHTML=result)
-            .catch(error => console.log('error', error));
+            server(pass, "https://2bd464rxbb5d7ovdypybtqmxsy0kstoh.lambda-url.us-west-2.on.aws/")
         }
     </script>
 </head>
@@ -59,12 +39,15 @@
         <div id="response"></div>
     </p>
     <form>
-        <label>Pass:</label>
-        <input type="password" id="pass"><br>
-        <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
-        <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
-        <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>
-        <!-- <button type="button">Call API</button> -->
+        <p>
+            <label>Pass:</label>
+            <input type="password" id="pass">
+        </p>
+        <p>
+            <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
+            <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
+            <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>
+        </p>
     </form>
 </body>
 </html>
