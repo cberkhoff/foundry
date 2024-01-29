@@ -10,6 +10,7 @@
     <script>
         var server = (pass, url) => {
             document.getElementById("response").ariaBusy= true
+            document.getElementById("response").innerHTML=""
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             var raw = JSON.stringify({"pass": pass});
