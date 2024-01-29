@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Host Control</title>
     <style>
     </style>
@@ -34,6 +36,7 @@
     </script>
 </head>
 <body>
+<main class="container">
     <p>
         <div>Response:</div>
         <div id="response"></div>
@@ -49,5 +52,6 @@
             <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>
         </p>
     </form>
+</main>
 </body>
 </html>
