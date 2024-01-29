@@ -37,19 +37,24 @@
 </head>
 <body>
 <main class="container">
-    <div>
-        <label for="response">Response:
-            <div id="response" class="code"></div>
-        </label>
+    <div role="document">
+        <article>
+            <form>
+                <label for="pass">Pass:
+                    <input type="password" id="pass" name="pass">
+                </label>
+                <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
+                <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
+                <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>    
+            </form>
+            <footer>
+                <pre>
+                    <code id="response" class="code"></code>
+                </pre>
+            </footer>
+        </article>
     </div>
-    <form>
-        <label for="pass">Pass:
-            <input type="password" id="pass" name="pass">
-        </label>
-        <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
-        <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
-        <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>
-    </form>
+    
 </main>
 </body>
 </html>
