@@ -13,14 +13,12 @@
             document.getElementById("response").innerHTML=""
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
-            var raw = JSON.stringify({"pass": pass});
             var requestOptions = {
                 method: method,
                 headers: myHeaders,
-                body: 'https://ud1gib9u1h.execute-api.us-west-2.amazonaws.com/prod/foundry-host',
                 redirect: 'follow'
             };
-            fetch(url, requestOptions)
+            fetch('https://ud1gib9u1h.execute-api.us-west-2.amazonaws.com/prod/foundry-host', requestOptions)
             .then(response => response.text())
             .then(result => {
                 document.getElementById("response").innerHTML=result
