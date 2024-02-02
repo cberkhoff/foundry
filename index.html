@@ -8,16 +8,16 @@
     <style>
     </style>
     <script>
-        var server = (pass, url) => {
+        var server = (pass, method) => {
             document.getElementById("response").ariaBusy= true
             document.getElementById("response").innerHTML=""
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             var raw = JSON.stringify({"pass": pass});
             var requestOptions = {
-                method: 'POST',
+                method: method,
                 headers: myHeaders,
-                body: raw,
+                body: 'https://ud1gib9u1h.execute-api.us-west-2.amazonaws.com/',
                 redirect: 'follow'
             };
             fetch(url, requestOptions)
@@ -30,13 +30,13 @@
         }
 
         var checkStatus = (pass)=>{
-            server(pass, "https://4kuukk5cehx7hpyeu7grkeenqi0btxwb.lambda-url.us-west-2.on.aws/")
+            server(pass, "GET")
         }
         var start = (pass)=>{
-            server(pass, "https://dlnkczk7posu4i2h733hrfvyv40ymodx.lambda-url.us-west-2.on.aws/")
+            server(pass, "POST")
         }
         var stop = (pass)=>{
-            server(pass, "https://2bd464rxbb5d7ovdypybtqmxsy0kstoh.lambda-url.us-west-2.on.aws/")
+            server(pass, "DELETE")
         }
     </script>
 </head>
