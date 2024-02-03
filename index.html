@@ -43,10 +43,8 @@
             .catch(error => console.log('error', error));
         }
 
-        /*var apigClient = apigClientFactory.newClient({
-            apiKey: '3lhonor3scompl3tament3mio'
-        });*/
-
+        var apigClient = apigClientFactory.newClient({})
+        
         var apig = (method)=>{
             apigClient.config.apiKey = document.getElementById("pass").innerHTML
             apigClient[method]({})
