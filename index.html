@@ -7,6 +7,8 @@
     <title>Host Control</title>
     <style>
     </style>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <!-- removed dist -->
     <script type="text/javascript" src="lib/axios/axios.standalone.js"></script>
     <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
     <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
@@ -48,7 +50,6 @@
         var checkStatus = (pass)=>{
             // server(pass, "GET")
             apigClient.foundryHostGet({})
-                .then(response => response.text())
                 .then(result => {
                     document.getElementById("response").innerHTML=result
                     document.getElementById("response").ariaBusy= false
