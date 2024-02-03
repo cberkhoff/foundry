@@ -21,48 +21,24 @@
     <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="apigClient.js"></script>
     <script>
-        var server = (pass, method) => {
-            document.getElementById("response").ariaBusy= true
-            document.getElementById("response").innerHTML=""
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append('Access-Control-Allow-Origin', "*");
-            myHeaders.append("X-Api-Key", document.getElementById("pass").innerHTML);
-            var requestOptions = {
-                mode: 'cors',
-                method: method,
-                headers: myHeaders,
-                redirect: 'follow'
-            };
-            fetch('https://ud1gib9u1h.execute-api.us-west-2.amazonaws.com/prod/foundry-host', requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                document.getElementById("response").innerHTML=result
-                document.getElementById("response").ariaBusy= false
-            })
-            .catch(error => console.log('error', error));
-        }
-
         var apigClient = apigClientFactory.newClient({})
-
         var apig = (method)=>{
             apigClient[method]({})
                 .then(result => {
                     console.log('result', result)
-                    document.getElementById("response").innerHTML=result
+                    document.getElementById("response").innerHTML=result.data
                     document.getElementById("response").ariaBusy= false
                 })
                 .catch(error => console.log('error', error));
         }
-
         var checkStatus = (pass)=>{
             apig("foundryHostGet")
         }
         var start = (pass)=>{
-            server(pass, "POST")
+            apig("foundryHostPost")
         }
         var stop = (pass)=>{
-            server(pass, "DELETE")
+            apig("foundryHostDelete")
         }
     </script>
 </head>
