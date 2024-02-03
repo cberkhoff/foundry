@@ -7,6 +7,17 @@
     <title>Host Control</title>
     <style>
     </style>
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
     <script>
         var server = (pass, method) => {
             document.getElementById("response").ariaBusy= true
@@ -30,8 +41,19 @@
             .catch(error => console.log('error', error));
         }
 
+        var apigClient = apigClientFactory.newClient({
+            apiKey: '3lhonor3scompl3tament3mio'
+        });
+
         var checkStatus = (pass)=>{
-            server(pass, "GET")
+            // server(pass, "GET")
+            apigClient.foundryHostGet({})
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById("response").innerHTML=result
+                    document.getElementById("response").ariaBusy= false
+                })
+                .catch(error => console.log('error', error));
         }
         var start = (pass)=>{
             server(pass, "POST")
