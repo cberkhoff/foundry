@@ -23,6 +23,8 @@
     <script>
         var apigClient = apigClientFactory.newClient({})
         var apig = (method)=>{
+            document.getElementById("response").innerHTML=""
+            document.getElementById("response").ariaBusy= true
             apigClient[method]({})
                 .then(result => {
                     console.log('result', result)
