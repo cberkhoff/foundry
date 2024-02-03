@@ -43,18 +43,23 @@
             .catch(error => console.log('error', error));
         }
 
-        var apigClient = apigClientFactory.newClient({
+        /*var apigClient = apigClientFactory.newClient({
             apiKey: '3lhonor3scompl3tament3mio'
-        });
+        });*/
 
-        var checkStatus = (pass)=>{
-            // server(pass, "GET")
-            apigClient.foundryHostGet({})
+        var apig = (method)=>{
+            apigClient.config.apiKey = document.getElementById("pass").innerHTML
+            apigClient[method]({})
                 .then(result => {
+                    console.log('result', result)
                     document.getElementById("response").innerHTML=result
                     document.getElementById("response").ariaBusy= false
                 })
                 .catch(error => console.log('error', error));
+        }
+
+        var checkStatus = (pass)=>{
+            apig("foundryHostGet")
         }
         var start = (pass)=>{
             server(pass, "POST")
