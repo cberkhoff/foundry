@@ -21,27 +21,36 @@
     <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
     <script type="text/javascript" src="apigClient.js"></script>
     <script>
-        var apigClient = apigClientFactory.newClient({})
+        var apigClient = apigClientFactory.newClient({});
         var apig = (method)=>{
-            document.getElementById("response").innerHTML=""
-            document.getElementById("response").ariaBusy= true
+            document.getElementById("response").innerHTML="";
+            document.getElementById("response").ariaBusy= true;
             apigClient[method]({})
                 .then(result => {
                     console.log('result', result)
-                    document.getElementById("response").innerHTML=result.data
-                    document.getElementById("response").ariaBusy= false
+                    document.getElementById("response").innerHTML=result.data;
+                    document.getElementById("response").ariaBusy= false;
                 })
                 .catch(error => console.log('error', error));
         }
         var checkStatus = (pass)=>{
-            apig("foundryHostGet")
+            apig("foundryHostGet");
         }
         var start = (pass)=>{
-            apig("foundryHostPost")
+            apig("foundryHostPost");
         }
         var stop = (pass)=>{
-            apig("foundryHostDelete")
+            apig("foundryHostDelete");
         }
+        var hash = (value)=>{
+            return CryptoJS.SHA256(value);
+        }
+        var hexEncode = (value) => {
+            return value.toString(CryptoJS.enc.Hex);
+        }
+        var urlparam = new URLSearchParams(window.location.search)
+        var pass = urlparam.get("pass")
+        var auth = hexEncode(hash(pass))
     </script>
 </head>
 <body>
@@ -49,9 +58,6 @@
     <div role="document">
         <article>
             <form>
-                <label for="pass">Pass:
-                    <input type="password" id="pass" name="pass">
-                </label>
                 <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
                 <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
                 <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>    
