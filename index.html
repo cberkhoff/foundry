@@ -48,9 +48,6 @@
         var hexEncode = (value) => {
             return value.toString(CryptoJS.enc.Hex);
         }
-        var urlparam = new URLSearchParams(window.location.search)
-        var pass = urlparam.get("pass")
-        var auth = hexEncode(hash(pass))
     </script>
 </head>
 <body>
@@ -58,6 +55,9 @@
     <div role="document">
         <article>
             <form>
+                <label for="pass">Pass:
+                    <input type="password" id="pass" name="pass">
+                </label>
                 <button type="button" onclick="checkStatus(document.getElementById('pass').value)">Check Server status</button>
                 <button type="button" onclick="start(document.getElementById('pass').value)">Start server</button>
                 <button type="button" onclick="stop(document.getElementById('pass').value)">Stop server</button>    
