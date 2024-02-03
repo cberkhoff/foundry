@@ -13,7 +13,10 @@
             document.getElementById("response").innerHTML=""
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
+            myHeaders.append('Access-Control-Allow-Origin', "*");
+            myHeaders.append("X-Api-Key", document.getElementById("pass").innerHTML);
             var requestOptions = {
+                mode: 'cors',
                 method: method,
                 headers: myHeaders,
                 redirect: 'follow'
